@@ -1,0 +1,94 @@
+{% extends 'base.html' %}
+{% block title %} Home{% endblock title %}
+{% block body %}
+
+<div class="container my-3">
+    <h2>Add Student</h2>
+    <form action="/" method="POST">
+        <div class="mb-3">
+            <label for="fname" class="form-label">First Name</label>
+            <input type="text" class="form-control" name="fname" id="fname" aria-describedby="emailHelp">
+        </div>
+
+        <div class="mb-3">
+            <label for="lname" class="form-label">Last Name</label>
+            <input type="text" class="form-control" name="lname" id="lname">
+        </div>
+
+        <div class="mb-3">
+            <label for="father" class="form-label">Father Name</label>
+            <input type="text" class="form-control" name="father" id="father">
+        </div>
+
+        <div class="mb-3">
+            <label for="dob" class="form-label">Date of Birth</label>
+            <input type="date" class="form-control" name="dob" id="dob">
+        </div>
+
+        <div class="mb-3">
+            <label for="adds" class="form-label">Address</label>
+            <input type="text" class="form-control" name="adds" id="adds">
+        </div>
+
+        <div class="mb-3">
+            <label for="city" class="form-label">City</label>
+            <input type="text" class="form-control" name="city" id="city">
+        </div>
+
+        <div class="mb-3">
+            <label for="phone" class="form-label">Phone</label>
+            <input type="text" class="form-control" name="phone" id="phone">
+        </div>
+
+        <button type="submit" class="btn btn-primary btn-dark">Submit</button>
+    </form>
+</div>
+<div class="container my-4">
+    {% if alldata|length == 0 %}
+    <div class="alert alert-warning" role="alert">
+        No Records. Please add Record/s.
+    </div>
+    {% else %}
+    <h2>Students</h2>
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">SNo</th>
+                <th scope="col">First Name</th>
+                <th scope="col">Last Name</th>
+                <th scope="col">Father Name</th>
+                <th scope="col">Date of Birth</th>
+                <th scope="col">Address</th>
+                <th scope="col">City</th>
+                <th scope="col">Phone</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for data in alldata %}
+
+            <tr>
+                <th scope="row">{{loop.index}}</th>
+                <td>{{data.fname}}</td>
+                <td>{{data.lname}}</td>
+                <td>{{data.father}}</td>
+                <td>{{data.dob}}</td>
+                <td>{{data.adds}}</td>
+                <td>{{data.city}}</td>
+                <td>{{data.phone}}</td>
+                <td>
+                    <a href="/update/{{data.sno}}" class="btn btn-outline-dark btn-sm mx-1">Update</a>
+                    <a href="/delete/{{data.sno}}" class="btn btn-outline-dark btn-sm mx-1">Delete</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% endif %}
+</div>
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
+    crossorigin="anonymous"></script>
+
+{% endblock body %}

@@ -1,0 +1,1 @@
+console.log('School app is now Running........!!!!!!!!!!!!');
